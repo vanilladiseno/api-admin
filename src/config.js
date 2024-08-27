@@ -3,9 +3,9 @@ import { config } from 'dotenv';
 config();
 
 export default {
-    host: process.env.HOST || "",
-    database : process.env.DATABASE || "",
-    user : process.env.USER || "",
-    password : process.env.PASSWORD || "",
-    port_bd : process.env.PORT_BD
+    host: process.env.PGHOST || "",
+    database : process.env.PGDATABASE || "",
+    user : process.env.PGUSER || "",
+    password : process.env.PGPASSWORD || "",
+    port_bd : process.env.PGPORT
 }
