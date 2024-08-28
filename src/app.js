@@ -4,7 +4,8 @@ import { config } from "dotenv";
 config();
 
 //Routes import
-import authRoutes from "./routes/auth.routes.js";
+import authRoute from "./routes/auth.route.js";
+import registerRoute from "./routes/user.route.js";
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.use(cors());
 
 //Routes
 
-app.use("/api/auth" , authRoutes);
-
+app.use("/api/auth" , authRoute);
+app.use("/api/register" , registerRoute);
 
 export default app;
