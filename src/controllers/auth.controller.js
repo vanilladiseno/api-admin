@@ -58,6 +58,16 @@ const authLogin = async(req , res)=>{
 
 }
 
+const validar = async(req , res)=>{
+
+    res.json({
+        "status" : true,
+        "msg" : "Token valido"
+    });
+
+}
+
 export const methods = {
-    authLogin
+    authLogin,
+    validar
 }

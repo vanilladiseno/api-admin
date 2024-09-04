@@ -2,6 +2,10 @@ import app from "./app.js";
 import { sequelize } from "./database/database.js";
 
 import './models/user.model.js';
+import './models/cliente.model.js';
+import './models/servicio.model.js';
+import './models/proyecto.model.js';
+import './models/galeria.model.js';
 
 const main=async ()=>{
     try {

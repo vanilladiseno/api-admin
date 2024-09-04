@@ -1,24 +1,42 @@
 import express from "express";
 import cors from "cors";
+import path from 'path';
 import { config } from "dotenv";
+
+import { fileURLToPath } from 'url';
 config();
 
 //Routes import
 import authRoute from "./routes/auth.route.js";
 import registerRoute from "./routes/user.route.js";
+import servicioRoute from "./routes/servicios.route.js";
+import clienteRoute from "./routes/clientes.route.js";
+import proyectoRoute from "./routes/proyectos.router.js";
 
 const app = express();
 
 //settings
 app.set("port" , process.env.PORT);
 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // middlewares
 app.use(express.json());
 app.use(cors());
 
-//Routes
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+//Routes
 app.use("/api/auth" , authRoute);
 app.use("/api/register" , registerRoute);
+app.use("/api/servicio" , servicioRoute);
+app.use("/api/cliente" , clienteRoute);
+app.use("/api/proyecto" , proyectoRoute);
+
 
 export default app;
