@@ -10,6 +10,9 @@ export const cliente = sequelize.define('cliente', {
     },
     nombre: {
         type: DataTypes.STRING
+    },
+    logo: {
+        type: DataTypes.STRING
     }
 });
 

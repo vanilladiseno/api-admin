@@ -14,7 +14,7 @@ router.post("/insert_image_main", validarToken  , proyectosController.insertImag
 router.post("/insert_image_multiple", validarToken , proyectosController.insertImageMultiple);
 
 
-router.post('/upload_file_main' , upload.single('file'), (req, res) => {
+router.post('/upload_file_main', upload.single('file'), (req, res) => {
 
     try {
       // Verifica si el archivo ha sido subido
@@ -32,7 +32,7 @@ router.post('/upload_file_main' , upload.single('file'), (req, res) => {
   });
 
 
-router.post('/upload_multiple' , upload_multiple.array('files'), (req, res) => {
+router.post('/upload_multiple', upload_multiple.array('files'), (req, res) => {
 
     try {
       res.status(200).json({

@@ -37,10 +37,55 @@ const getClientes = async(req , res) => {
             "error"  : error
         })
     }
+}
+
+const addLogoCliente = async(req , res) => {
+
+    const {imagen , id} = req.body;
+
+    console.log(req.body);
+
+    try {
+    
+          cliente.update( 
+            {
+              logo : imagen,
+            },
+            {
+              where : {
+                id: id
+              }
+            }
+            ).then((result) => {
+            
+                res.json({
+                    "status" : true,
+                    "response" : result
+                })
+
+            })
+            .catch((error) =>{
+                
+                res.json({
+                    "status" : false,
+                    "response" : error
+                })
+
+            });
+        
+
+    } catch (error) {
+        res.json({
+            "status" : false,
+            "msg"    : 'Error al insertar la imagen principal',
+            "error"  : error
+        })
+    }
 
 }
 
 export const methods = {
     addCliente,
-    getClientes
+    getClientes,
+    addLogoCliente
 }

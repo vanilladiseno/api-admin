@@ -7,5 +7,6 @@ const router = Router();
 
 router.post("/" , validarToken , clientesController.addCliente);
 router.get("/" , validarToken , clientesController.getClientes);
+router.post("/add_logo_cliente" , validarToken , clientesController.addLogoCliente);
 
 export default router;

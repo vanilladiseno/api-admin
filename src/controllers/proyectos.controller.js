@@ -4,7 +4,18 @@ import { galeria } from '../models/galeria.model.js';
 
 const addProyecto = async(req , res) => {
 
-    const {nombre, descripcion, id_cliente, id_servicio, anio, ubicacion, destacado} = req.body;
+    const 
+    {
+        nombre, 
+        descripcion, 
+        id_cliente, 
+        id_servicio, 
+        id_alianza,
+        id_categoria_extra,
+        anio, 
+        ubicacion, 
+        destacado
+    } = req.body;
 
     try {
         const newProyecto = await proyecto.create({
@@ -12,6 +23,8 @@ const addProyecto = async(req , res) => {
             descripcion,
             id_cliente,
             id_servicio,
+            id_alianza,
+            id_categoria_extra,
             anio,
             ubicacion,
             destacado
@@ -114,6 +127,7 @@ const insertImageMultiple = async(req , res) => {
     })
 
 }
+
 
 export const methods = {
     addProyecto,

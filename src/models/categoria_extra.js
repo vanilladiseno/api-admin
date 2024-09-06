@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/database.js';
 import { proyecto } from './proyecto.model.js';
 
-export const servicio = sequelize.define('servicio', {
+export const categoria_extra = sequelize.define('categoria_extra', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -10,18 +10,15 @@ export const servicio = sequelize.define('servicio', {
     },
     nombre: {
         type: DataTypes.STRING
-    },
-    descripcion: {
-        type: DataTypes.TEXT
     }
 });
 
-servicio.hasMany(proyecto, {
-    foreignKey: 'id_servicio',
+categoria_extra.hasMany(proyecto, {
+    foreignKey: 'id_categoria_extra',
     sourceKey: 'id'
 });
 
-proyecto.belongsTo(servicio , {
-    foreignKey: 'id_servicio',
+proyecto.belongsTo(categoria_extra , {
+    foreignKey: 'id_categoria_extra',
     targetId: 'id'
 });
