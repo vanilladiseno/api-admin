@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../database/database.js';
-import { proyecto } from './proyecto.model.js';
+import { categoria_extra } from './categoria_extra.js';
 
 export const alianza = sequelize.define('alianza', {
     id: {
@@ -10,15 +10,18 @@ export const alianza = sequelize.define('alianza', {
     },
     nombre: {
         type: DataTypes.STRING
+    },
+    estado: {
+        type: DataTypes.STRING
     }
 });
 
-alianza.hasMany(proyecto, {
+alianza.hasMany(categoria_extra, {
     foreignKey: 'id_alianza',
     sourceKey: 'id'
 });
 
-proyecto.belongsTo(alianza , {
+categoria_extra.belongsTo(alianza , {
     foreignKey: 'id_alianza',
     targetId: 'id'
 });

@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/uploads_mult', express.static(path.join(__dirname, 'uploads_gallery')));
+app.use('/uploads_gallery', express.static(path.join(__dirname, 'uploads_gallery')));
 
 //Routes
 app.use("/api/auth" , authRoute);

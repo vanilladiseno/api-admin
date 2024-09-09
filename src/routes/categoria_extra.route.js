@@ -5,7 +5,7 @@ import {methods as categoriaExtraController} from "./../controllers/categoria_ex
 
 const router = Router();
 
-router.get("/" , validarToken , categoriaExtraController.getCategoriaExtra);
+router.get("/:id" , validarToken , categoriaExtraController.getCategoriaExtra);
 
 
 export default router;

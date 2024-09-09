@@ -25,7 +25,10 @@ export const proyecto = sequelize.define('proyecto', {
     },
     destacado : {
         type: DataTypes.BOOLEAN
-    }
+    },
+    slug:{
+        type:DataTypes.STRING
+    },
 });
 
 proyecto.hasMany(galeria, {

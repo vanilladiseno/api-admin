@@ -10,6 +10,9 @@ export const categoria_extra = sequelize.define('categoria_extra', {
     },
     nombre: {
         type: DataTypes.STRING
+    },
+    estado: {
+        type: DataTypes.STRING
     }
 });
 
