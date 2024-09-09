@@ -7,6 +7,7 @@ const router = Router();
 
 router.post("/" , validarToken , serviciosController.addService);
 router.get("/" , validarToken , serviciosController.getService);
+router.get("/:id" , validarToken , serviciosController.getServiceById);
 
 
 export default router;

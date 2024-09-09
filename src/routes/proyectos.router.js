@@ -13,6 +13,8 @@ router.get("/:nombre_alianza/:nombre_categoria/:proyectos_destacados" , proyecto
 router.post("/insert_image_main", validarToken  , proyectosController.insertImageMain);
 router.post("/insert_image_multiple", validarToken , proyectosController.insertImageMultiple);
 router.get("/get_proyecto_by_slug/:slug" , proyectosController.getProyectoBySlug);
+router.post("/get_proyectos" , proyectosController.getProyectoView);
+router.get("/get_proyectos_by_id/:id" , proyectosController.getProyectoById);
 
 router.post('/upload_file_main', upload.single('file'), (req, res) => {
 

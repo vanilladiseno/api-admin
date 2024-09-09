@@ -27,8 +27,29 @@ const addCliente = async(req , res) => {
 const getClientes = async(req , res) => {
     
     try {
-        const cursos = await cliente.findAll();
-        res.json(cursos);
+        const clientes = await cliente.findAll();
+        res.json(clientes);
+
+    } catch (error) {
+        res.json({
+            "status" : false,
+            "msg"    : 'Error al ejecutar la consulta',
+            "error"  : error
+        })
+    }
+}
+
+const getClienteById = async(req , res) => {
+    
+    const {id} = req.params;
+
+    try {
+        const res_cliente = await cliente.findAll({
+            where : {
+                id : id
+            }
+        });
+        res.json(res_cliente[0]);
 
     } catch (error) {
         res.json({
@@ -87,5 +108,6 @@ const addLogoCliente = async(req , res) => {
 export const methods = {
     addCliente,
     getClientes,
-    addLogoCliente
+    addLogoCliente,
+    getClienteById
 }

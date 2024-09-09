@@ -40,8 +40,30 @@ const getService = async(req , res) => {
 
 }
 
+const getServiceById = async(req , res) => {
+    try {
+
+        const {id} = req.params;
+
+        const res_servicio = await servicio.findAll({
+            where : {
+                id : id
+            }
+        });
+        res.json(res_servicio[0]);
+
+    } catch (error) {
+        res.json({
+            "status" : false,
+            "msg"    : 'Error al ejecutar la consulta',
+            "error"  : error
+        })
+    }
+}
+
 export const methods = {
     addService,
-    getService
+    getService,
+    getServiceById
 }
 

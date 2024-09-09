@@ -210,6 +210,44 @@ const insertImageMultiple = async(req , res) => {
 
 }
 
+const getProyectoById = async(req , res) => {
+
+    try {
+
+        const {id} = req.params;
+        const response_proyecto = await proyecto.findAll({
+            where : {
+                id:id
+            },
+            attributes: ["id", "nombre","descripcion","anio","ubicacion","imagen","id_categoria_extra", "destacado"],
+            include: [
+                {
+                    model: cliente,
+                    attributes: ["id", "nombre", "logo"]
+                },
+                {
+                    model: servicio,
+                    attributes: ["id", "nombre"]
+                },
+                {
+                    model: galeria,
+                    attributes: ["id", "imagen"]
+                }
+            ]
+        });
+
+        res.json(response_proyecto[0]);
+
+    } catch (error) {
+        res.json({
+            "status" : false,
+            "error" : error
+        })
+    }
+
+}
+
+
 const getProyectoBySlug = async(req , res) => {
 
     try {
@@ -278,10 +316,53 @@ const getProyectoBySlug = async(req , res) => {
 }
 
 
+const getProyectoView= async(req , res) => {
+
+    const {page , pageSize} = req.body;
+
+    const offset = (page - 1) * pageSize;
+    const limit = parseInt(pageSize);
+
+    const response_proyecto = await proyecto.findAndCountAll({
+        limit: limit,
+        offset: offset,
+        attributes: ["id", "nombre", "descripcion", "anio", "ubicacion", "imagen", "destacado"],
+        include: [
+            {
+                model: cliente,
+                attributes: ["id", "nombre", "logo"]
+            },
+            {
+                model: servicio,
+                attributes: ["id", "nombre"]
+            },
+            {
+                model: galeria,
+                attributes: ["id", "imagen"]
+            }
+        ],
+        order: [['id', 'ASC']],
+        distinct: true
+    });
+
+    const totalPages = Math.ceil(response_proyecto.count / pageSize);
+
+    res.json({
+        data: response_proyecto.rows,
+        currentPage: page,
+        totalPages: totalPages,
+        totalItems: response_proyecto.count
+    });
+
+}
+
+
 export const methods = {
     addProyecto,
     getProyectos,
     insertImageMain,
     insertImageMultiple,
-    getProyectoBySlug
+    getProyectoBySlug,
+    getProyectoView,
+    getProyectoById
 }
