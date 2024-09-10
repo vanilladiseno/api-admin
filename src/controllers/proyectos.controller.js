@@ -316,7 +316,7 @@ const getProyectoBySlug = async(req , res) => {
 }
 
 
-const getProyectoView= async(req , res) => {
+const getProyectoView = async(req , res) => {
 
     const {page , pageSize} = req.body;
 
@@ -357,6 +357,96 @@ const getProyectoView= async(req , res) => {
 }
 
 
+const updateProyectoById = async (req , res) => {
+
+    const {id} = req.params;
+
+    const {
+        nombre,
+        descripcion,
+        anio,
+        ubicacion,
+        id_cliente,
+        id_servicio,
+        destacado,
+        id_categoria_extra
+    } = req.body;
+
+    const slug = slugify(nombre, {
+        lower: true,
+        strict: true,
+        replacement: '-'
+    });
+
+    proyecto.update( 
+        {
+          nombre                : nombre,
+          descripcion           : descripcion,
+          anio                  : anio,
+          ubicacion             : ubicacion,
+          id_cliente            : id_cliente,
+          id_servicio           : id_servicio,
+          destacado             : destacado,
+          id_categoria_extra    : id_categoria_extra,
+          slug                  : slug
+        },
+        {
+          where : {
+            id: id
+          }
+        }
+        ).then((result) => {
+        
+            res.json({
+                "status" : true,
+                "response" : result
+            })
+
+        })
+        .catch((error) =>{
+            
+            res.json({
+                "status" : false,
+                "response" : error
+            })
+
+        });
+
+}
+
+const deleteProyectoById = async (req , res) => {
+
+    const {id} = req.params;
+
+    try {
+        const result = await proyecto.destroy({
+          where: {
+            id: id
+          }
+        });
+    
+        if (result) {
+            res.json({
+                "status" : true,
+                "response" : result 
+            })
+        } else {
+            res.json({
+                "status" : false,
+                "msj" : "No se encontró el proyecto" 
+            })
+        }
+      } catch (error) {
+        res.json({
+            "status" : false,
+            "msj" : "Error al eliminar el proyecto",
+            "error" : error
+        })
+      }
+
+}
+
+
 export const methods = {
     addProyecto,
     getProyectos,
@@ -364,5 +454,7 @@ export const methods = {
     insertImageMultiple,
     getProyectoBySlug,
     getProyectoView,
-    getProyectoById
+    getProyectoById,
+    updateProyectoById,
+    deleteProyectoById
 }

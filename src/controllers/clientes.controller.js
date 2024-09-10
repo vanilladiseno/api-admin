@@ -64,8 +64,6 @@ const addLogoCliente = async(req , res) => {
 
     const {imagen , id} = req.body;
 
-    console.log(req.body);
-
     try {
     
           cliente.update( 
@@ -105,9 +103,44 @@ const addLogoCliente = async(req , res) => {
 
 }
 
+
+const updateClienteById = async(req , res) => {
+
+    const {id} = req.params;
+    const {nombre} = req.body;
+
+    cliente.update( 
+        {
+          nombre : nombre,
+        },
+        {
+          where : {
+            id: id
+          }
+        }
+        ).then((result) => {
+        
+            res.json({
+                "status" : true,
+                "response" : result
+            })
+
+        })
+        .catch((error) =>{
+            
+            res.json({
+                "status" : false,
+                "response" : error
+            })
+
+        });
+
+}
+
 export const methods = {
     addCliente,
     getClientes,
     addLogoCliente,
-    getClienteById
+    getClienteById,
+    updateClienteById
 }

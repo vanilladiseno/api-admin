@@ -9,5 +9,6 @@ router.post("/" , validarToken , clientesController.addCliente);
 router.get("/" , validarToken , clientesController.getClientes);
 router.get("/:id" , validarToken , clientesController.getClienteById);
 router.post("/add_logo_cliente" , validarToken , clientesController.addLogoCliente);
+router.put("/update_cliente_by_id/:id" , validarToken , clientesController.updateClienteById);
 
 export default router;

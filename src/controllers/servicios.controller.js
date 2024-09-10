@@ -61,9 +61,48 @@ const getServiceById = async(req , res) => {
     }
 }
 
+
+const updateServicioById = async(req , res) => {
+
+    const {id} = req.params;
+
+    const {
+        nombre
+    } = req.body;
+
+    servicio.update( 
+        {
+          nombre : nombre,
+        },
+        {
+          where : {
+            id: id
+          }
+        }
+        ).then((result) => {
+        
+            res.json({
+                "status" : true,
+                "response" : result
+            })
+
+        })
+        .catch((error) =>{
+            
+            res.json({
+                "status" : false,
+                "response" : error
+            })
+
+        });
+
+
+}
+
 export const methods = {
     addService,
     getService,
-    getServiceById
+    getServiceById,
+    updateServicioById
 }
 
