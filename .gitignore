@@ -1,5 +1,5 @@
-/src/uploads/**
-/src/uploads_gallery/**
+src/uploads/**
+src/uploads_gallery/**
 
 # Logs
 logs
