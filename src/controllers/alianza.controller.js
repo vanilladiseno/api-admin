@@ -17,6 +17,7 @@ const getAlianzas = async(req , res) => {
             "error"  : error
         })
     }
+    
 }
 
 export const methods = {
