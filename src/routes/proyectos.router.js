@@ -9,7 +9,7 @@ import {methods as proyectosController} from "./../controllers/proyectos.control
 const router = Router();
 
 router.post("/", validarToken , proyectosController.addProyecto);
-router.get("/:nombre_alianza/:nombre_categoria/:proyectos_destacados" , proyectosController.getProyectos);
+router.post("/get_proyectos_view" , proyectosController.getProyectos);
 router.post("/insert_image_main", validarToken  , proyectosController.insertImageMain);
 router.post("/insert_image_multiple", validarToken , proyectosController.insertImageMultiple);
 router.get("/get_proyecto_by_slug/:slug" , proyectosController.getProyectoBySlug);

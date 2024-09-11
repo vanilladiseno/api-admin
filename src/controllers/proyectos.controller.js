@@ -67,8 +67,7 @@ const getProyectos = async(req , res) => {
             nombre_alianza, 
             nombre_categoria, 
             proyectos_destacados
-        } = req.params;
-
+        } = req.body;
 
         const response_alianza = await alianza.findAll({
             where: {
@@ -193,6 +192,21 @@ const insertImageMultiple = async(req , res) => {
     const {imagenes , id} = req.body;
     let insertada;
     let response = [];
+
+    const response_galeria = await galeria.findAll({
+        where : {
+            id_proyecto : id
+        }
+    });
+
+    if(response_galeria.length > 0){
+        galeria.destroy({
+            where: {
+                id_proyecto: id
+            }
+          })
+    }
+
     await Promise.all(
         imagenes.map(async (img) => {
             insertada = await galeria.create({
