@@ -1,5 +1,8 @@
-src/uploads/**
-src/uploads_gallery/**
+# src/uploads/*
+# src/uploads_gallery/*
+
+# !src/uploads/.gitkeep
+# !src/uploads_gallery/.gitkeep
 
 # Logs
 logs
