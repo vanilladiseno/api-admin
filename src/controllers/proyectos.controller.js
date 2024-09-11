@@ -206,6 +206,7 @@ const insertImageMultiple = async(req , res) => {
             }
           })
     }
+    
 
     await Promise.all(
         imagenes.map(async (img) => {
