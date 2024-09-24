@@ -15,6 +15,7 @@ import clienteRoute from "./routes/clientes.route.js";
 import proyectoRoute from "./routes/proyectos.router.js";
 import alianzaRoute from "./routes/alianza.route.js";
 import categoriaExtraRoute from "./routes/categoria_extra.route.js";
+import configuracionesRoute from "./routes/configuraciones.route.js";
 
 const app = express();
 
@@ -43,5 +44,6 @@ app.use("/api/cliente" , clienteRoute);
 app.use("/api/proyecto" , proyectoRoute);
 app.use("/api/alianza" , alianzaRoute);
 app.use("/api/categoria_extra" , categoriaExtraRoute);
+app.use("/api/configuracion", configuracionesRoute);
 
 export default app;

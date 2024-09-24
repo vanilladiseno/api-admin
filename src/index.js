@@ -8,6 +8,8 @@ import './models/alianza.model.js';
 import './models/categoria_extra.js';
 import './models/proyecto.model.js';
 import './models/galeria.model.js';
+import './models/configuraciones.model.js';
+import './models/seo.model.js';
 
 const main=async ()=>{
     try {
