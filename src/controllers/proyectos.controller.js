@@ -89,7 +89,7 @@ const getProyectos = async(req , res) => {
                     {
                         model: proyecto,
                         where: {
-                            destacado: proyectos_destacados
+                            ...(proyectos_destacados ? { destacado: proyectos_destacados } : {})
                         },
                         attributes: ["id", "nombre", "descripcion", "anio", "ubicacion", "destacado", "imagen" , "slug"],
                         include: [
