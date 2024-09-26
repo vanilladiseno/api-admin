@@ -6,11 +6,11 @@ import {methods as configuracionesController} from "./../controllers/configuraci
 const router = Router();
 
 router.post("/" , validarToken , configuracionesController.addConfiguracion);
-router.post("/getconfig" , validarToken , configuracionesController.getConfiguracion);
-router.get("/get_rutas_seo" , validarToken , configuracionesController.getRutas);
-router.get("/get_rutas_seo_by_id/:id" , validarToken , configuracionesController.getRutasById);
-router.put("/get_update_ruta_seo_by_id/:id" , validarToken , configuracionesController.getUpdateRutaById);
-router.post("/get_data_seo_by_url" , validarToken , configuracionesController.getDataSeoByUrl);
-router.post("/send_mail_contacto" , validarToken , configuracionesController.sendMailContacto);
+router.post("/getconfig" , configuracionesController.getConfiguracion);
+router.get("/get_rutas_seo" , configuracionesController.getRutas);
+router.get("/get_rutas_seo_by_id/:id" , configuracionesController.getRutasById);
+router.put("/get_update_ruta_seo_by_id/:id" , configuracionesController.getUpdateRutaById);
+router.post("/get_data_seo_by_url" , configuracionesController.getDataSeoByUrl);
+router.post("/send_mail_contacto" , configuracionesController.sendMailContacto);
 
 export default router;
