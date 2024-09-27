@@ -178,6 +178,8 @@ const sendMailContacto = async(req , res) => {
 
     const jsonResponse = response_correo.map(item => item.toJSON());
 
+    let correosArray = jsonResponse[0].meta_data.split(',');
+
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
 
@@ -197,7 +199,7 @@ const sendMailContacto = async(req , res) => {
 
             const mailOptions = {
                 from: 'enviadorppr@gmail.com', // Dirección del remitente
-                to: jsonResponse[0].meta_data, // Dirección del destinatario
+                to:  correosArray, // Dirección del destinatario
                 subject: 'Consulta desde formulario', // Asunto del correo
                 //text: 'Contenido del correo en texto plano', // Cuerpo del correo en texto plano
                 html: html 

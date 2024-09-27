@@ -89,7 +89,8 @@ const getProyectos = async(req , res) => {
                     {
                         model: proyecto,
                         where: {
-                            ...(proyectos_destacados ? { destacado: proyectos_destacados } : {})
+                            ...(proyectos_destacados ? { destacado: proyectos_destacados } : { destacado: false })
+                            
                         },
                         attributes: ["id", "nombre", "descripcion", "anio", "ubicacion", "destacado", "imagen" , "slug"],
                         include: [
@@ -109,7 +110,7 @@ const getProyectos = async(req , res) => {
                     }
                 ],
                 order: [
-                    [{ model: proyecto }, 'id', 'ASC']
+                    [{ model: proyecto }, 'anio', 'DESC']
                 ]
             });
 
