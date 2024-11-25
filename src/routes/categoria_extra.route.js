@@ -6,6 +6,7 @@ import {methods as categoriaExtraController} from "./../controllers/categoria_ex
 const router = Router();
 
 router.get("/:id" , validarToken , categoriaExtraController.getCategoriaExtra);
+router.get("/get_proyectos_by_slug_categoria/:slug" , validarToken , categoriaExtraController.getProyectosBySlugCategoria);
 
 
 export default router;

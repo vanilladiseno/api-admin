@@ -13,6 +13,18 @@ export const categoria_extra = sequelize.define('categoria_extra', {
     },
     estado: {
         type: DataTypes.STRING
+    },
+    slug: {
+        type: DataTypes.STRING
+    },
+    bajada: {
+        type: DataTypes.STRING
+    },
+    descripcion: {
+        type: DataTypes.TEXT
+    },
+    image: {
+        type: DataTypes.STRING
     }
 });
 

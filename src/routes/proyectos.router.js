@@ -17,6 +17,8 @@ router.post("/get_proyectos" , proyectosController.getProyectoView);
 router.get("/get_proyectos_by_id/:id" , proyectosController.getProyectoById);
 router.put("/update_project_by_id/:id" , proyectosController.updateProyectoById);
 router.delete("/delete_proyecto_by_id/:id" , proyectosController.deleteProyectoById);
+router.delete("/delete_imagen_gallery_by_id/:id" , proyectosController.deleteImagenGallery);
+router.put("/delete_imagen_main_by_id_project/:id" , proyectosController.deleteImagenMain);
 
 router.post('/upload_file_main', upload.single('file'), (req, res) => {
 

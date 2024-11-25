@@ -248,6 +248,10 @@ const getProyectoById = async(req , res) => {
                 {
                     model: galeria,
                     attributes: ["id", "imagen"]
+                },
+                {
+                    model: categoria_extra,
+                    attributes: ["id", "nombre"]
                 }
             ]
         });
@@ -289,6 +293,15 @@ const getProyectoBySlug = async(req , res) => {
                 {
                     model: galeria,
                     attributes: ["id", "imagen"]
+                },
+                {
+                    model: categoria_extra,
+                    attributes: ["id", "nombre", "slug"],
+                    include: [
+                        {
+                            model: alianza
+                        }
+                    ]
                 }
             ]
 
@@ -463,6 +476,71 @@ const deleteProyectoById = async (req , res) => {
 }
 
 
+const deleteImagenGallery = async (req , res) => {
+
+    const {id} = req.params;
+
+    try {
+        const result = await galeria.destroy({
+          where: {
+            id: id
+          }
+        });
+    
+        if (result) {
+            res.json({
+                "status" : true,
+                "response" : result 
+            })
+        } else {
+            res.json({
+                "status" : false,
+                "msj" : "No se encontró la imagen" 
+            })
+        }
+      } catch (error) {
+        res.json({
+            "status" : false,
+            "msj" : "Error al eliminar la imagen",
+            "error" : error
+        })
+      }
+}
+
+
+const deleteImagenMain = async (req , res) => {
+
+    const {id} = req.params;
+
+    proyecto.update( 
+        {
+          imagen : ''
+        },
+        {
+          where : {
+            id: id
+          }
+        }
+        ).then((result) => {
+        
+            res.json({
+                "status" : true,
+                "response" : result
+            })
+
+        })
+        .catch((error) =>{
+            
+            res.json({
+                "status" : false,
+                "response" : error
+            })
+
+        });
+
+}
+
+
 export const methods = {
     addProyecto,
     getProyectos,
@@ -472,5 +550,7 @@ export const methods = {
     getProyectoView,
     getProyectoById,
     updateProyectoById,
-    deleteProyectoById
+    deleteProyectoById,
+    deleteImagenGallery,
+    deleteImagenMain
 }
